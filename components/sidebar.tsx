@@ -45,7 +45,7 @@ export function Sidebar() {
             <a
               key={item.label}
               href={item.href}
-              className={`border border-[#A8D9D9] flex items-center gap-3 px-4 py-3 rounded-[46px] ] transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sidebar-foreground ${
+              className={`border border-[transparent] hover:border-[#A8D9D9] flex items-center gap-3 px-4 py-3 rounded-[46px] ] transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sidebar-foreground ${
           isCollapsed ? "justify-center" : ""
               }`}
             >
