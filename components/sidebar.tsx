@@ -42,16 +42,21 @@ export function Sidebar() {
       <nav className="flex-1 p-4 space-y-2 overflow-y-auto gap-2.5">
         {menuItems.map((item) =>
           item.label !== "separator" ? (
-            <a
-              key={item.label}
-              href={item.href}
-              className={`border border-[transparent] hover:border-[#A8D9D9] flex items-center gap-3 px-4 py-3 rounded-[46px] ] transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sidebar-foreground ${
-          isCollapsed ? "justify-center" : ""
-              }`}
-            >
-              <item.icon size={20} className="flex-shrink-0" />
-              {!isCollapsed && <span className="text-sm font-medium">{item.label}</span>}
-            </a>
+            (() => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className={`border border-[transparent] hover:border-[#A8D9D9] flex items-center gap-3 px-4 py-3 rounded-[46px] transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sidebar-foreground ${
+                    isCollapsed ? "justify-center" : ""
+                  }`}
+                >
+                  {Icon && <Icon size={20} className="shrink-0" />}
+                  {!isCollapsed && <span className="text-sm font-medium">{item.label}</span>}
+                </a>
+              );
+            })()
           ) : (
             <hr key="separator" className="border-t border-sidebar-border border-dashed border-2 my-4" />
           )
