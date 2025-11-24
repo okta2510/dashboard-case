@@ -22,13 +22,15 @@ export default function Home() {
           <h2 className="mb-2 text-lg font-semibold">Pinned Playbooks</h2>
           <p className="mb-4 text-sm text-muted-foreground">Quick access to your most frequently usednplaybooks.</p>
           <Card className="flex flex-col items-center justify-center py-16">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-muted">
-              <Link2 className="h-6 w-6 text-muted-foreground" />
+            <div className=" flex w-auto items-center justify-center rounded-full">
+              <Link2 className="h-auto w-[23px] text-muted-foreground" />
             </div>
-            <h3 className="mb-2 text-base font-semibold">No pinned playbooks</h3>
-            <p className="text-balance text-center text-sm text-muted-foreground">
-              Pin your favorite playbooks for quick access. Create your first playbook to get started.
-            </p>
+            <div className="text-center flex-row">
+              <h3 className="mb-2 text-base font-semibold">No pinned playbooks</h3>
+              <p className="text-balance text-center text-sm text-muted-foreground">
+                Pin your favorite playbooks for quick access. Create your first playbook to get started.
+              </p>
+            </div>
           </Card>
         </section>
 
@@ -40,7 +42,7 @@ export default function Home() {
           </p>
           <div className="grid gap-4 md:grid-cols-3">
             <Card className="cursor-pointer p-6 transition-colors hover:bg-accent" onClick={() => setIsModalOpen(true)}>
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-900/20">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/20">
                 <Link2 className="h-5 w-5 text-orange-600 dark:text-orange-400" />
               </div>
               <h3 className="mb-2 text-base font-semibold">Create a Playbook</h3>
@@ -50,7 +52,7 @@ export default function Home() {
             </Card>
 
             <Card className="p-6">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900/20">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/20">
                 <FileText className="h-5 w-5 text-blue-600 dark:text-blue-400" />
               </div>
               <h3 className="mb-2 text-base font-semibold">Create a Template</h3>
@@ -60,7 +62,7 @@ export default function Home() {
             </Card>
 
             <Card className="p-6">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-100 dark:bg-purple-900/20">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900/20">
                 <Database className="h-5 w-5 text-purple-600 dark:text-purple-400" />
               </div>
               <h3 className="mb-2 text-base font-semibold">Add to Knowledge Base</h3>
@@ -79,7 +81,7 @@ export default function Home() {
           </p>
           <div className="grid gap-4 md:grid-cols-3">
             <Card className="p-6">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-900/20">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/20">
                 <Link2 className="h-5 w-5 text-orange-600 dark:text-orange-400" />
               </div>
               <h3 className="mb-2 text-base font-semibold">Playbooks</h3>
@@ -87,7 +89,7 @@ export default function Home() {
             </Card>
 
             <Card className="p-6">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900/20">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/20">
                 <FileText className="h-5 w-5 text-blue-600 dark:text-blue-400" />
               </div>
               <h3 className="mb-2 text-base font-semibold">Templates</h3>
@@ -97,7 +99,7 @@ export default function Home() {
             </Card>
 
             <Card className="p-6">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-100 dark:bg-purple-900/20">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900/20">
                 <Database className="h-5 w-5 text-purple-600 dark:text-purple-400" />
               </div>
               <h3 className="mb-2 text-base font-semibold">Knowledge Base</h3>

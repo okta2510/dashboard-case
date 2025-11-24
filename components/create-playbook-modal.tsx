@@ -328,7 +328,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
             <div
               className={cn(
                 "relative rounded-lg border-2 border-dashed p-12 text-center transition-colors",
-                isDragging ? "border-teal-600 bg-teal-50" : "border-muted-foreground/25 bg-muted/20",
+                isDragging ? "border-grbg-gray-950 bg-teal-50" : "border-muted-foreground/25 bg-muted/20",
               )}
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
@@ -343,7 +343,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
               />
               <div className="flex flex-col items-center gap-3">
                 <div className="rounded-full bg-teal-100 p-3">
-                  <Upload className="h-6 w-6 text-teal-600" />
+                  <Upload className="h-6 w-6 text-grbg-gray-950" />
                 </div>
                 <div>
                   <p className="text-base font-medium">Drag and drop contract here, or click to select them</p>
@@ -378,7 +378,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                       <p className="text-sm text-muted-foreground">{formatFileSize(file.size)}</p>
                       <div className="mt-2 flex items-center gap-2">
                         <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-muted">
-                          <div className="h-full bg-teal-600 transition-all" style={{ width: `${file.progress}%` }} />
+                          <div className="h-full bg-gray-950 transition-all" style={{ width: `${file.progress}%` }} />
                         </div>
                         <span className="text-xs font-medium">{file.progress}%</span>
                       </div>
@@ -395,7 +395,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
           <div className="flex h-full items-center justify-center">
             <div className="text-center">
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-teal-100">
-                <Upload className="h-8 w-8 text-teal-600" />
+                <Upload className="h-8 w-8 text-grbg-gray-950" />
               </div>
               <h3 className="text-lg font-semibold">Ready to Upload</h3>
               <p className="mt-2 text-sm text-muted-foreground">
@@ -454,7 +454,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
               <div className="text-xs text-muted-foreground">Step {currentStep} of 4</div>
               <div className="mt-2 h-1 overflow-hidden rounded-full bg-muted">
                 <div
-                  className="h-full bg-teal-600 transition-all duration-300"
+                  className="h-full bg-gray-950 transition-all duration-300"
                   style={{ width: `${(currentStep / 4) * 100}%` }}
                 />
               </div>
@@ -488,7 +488,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                   Cancel
                 </Button>
               )}
-              <Button onClick={handleNextStep} className="bg-teal-600 hover:bg-teal-700 text-white">
+              <Button onClick={handleNextStep} className="bg-gray-950 hover:bg-gray-900 text-white">
                 {currentStep === 4 ? "Submit" : "Next Step"}
               </Button>
             </div>
@@ -515,8 +515,8 @@ function StepItem({
       <div
         className={cn(
           "flex h-6 w-6 items-center justify-center rounded-full border-2 text-xs font-medium shrink-0",
-          active && "border-teal-600 bg-teal-600 text-white",
-          completed && "border-teal-600 bg-teal-600 text-white",
+          active && "border-grbg-gray-950 bg-gray-950 text-white",
+          completed && "border-grbg-gray-950 bg-gray-950 text-white",
           !active && !completed && "border-muted-foreground/30 bg-background text-muted-foreground",
         )}
       >

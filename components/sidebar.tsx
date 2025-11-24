@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { ChevronLeft, ChevronRight, Home, Settings, Users, FileText, BarChart3 } from "lucide-react"
+import { ChevronLeft, ChevronRight, Home, Settings, Users, Inbox, BarChart3, FileText, LayoutGrid, Atom, HardDrive } from "lucide-react"
+import Image from "next/image";
 import { Button } from "@/components/ui/button"
 import { ProfileMenu } from "@/components/profile-menu"
 import { SidebarProvider, SidebarRail } from "@/components/ui/sidebar"
@@ -12,10 +13,12 @@ export function Sidebar() {
   const menuItems = [
     { icon: Home, label: "Dashboard", href: "#" },
     { icon: Users, label: "Users", href: "#" },
-    { icon: FileText, label: "Documents", href: "#" },
+    { icon: Inbox, label: "Inbox", href: "#" },
     { label: "separator"},
-    { icon: BarChart3, label: "Analytics", href: "#" },
-    { icon: Settings, label: "Settings", href: "#" },
+    { icon: FileText, label: "Documents", href: "#" },
+    { icon: LayoutGrid, label: "menu", href: "#" },
+    { icon: Atom, label: "menu", href: "#" },
+    { icon: HardDrive, label: "menu", href: "#" },
   ]
 
   return (
@@ -26,16 +29,31 @@ export function Sidebar() {
         }`}
       >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
-        {!isCollapsed && <h1 className="text-lg font-bold text-sidebar-foreground">Menu</h1>}
+
+      {/* <div className={'flex items-center justify-center p-4  border-sidebar-border'+ (isCollapsed ? 'flex-col' : 'flex-row-reverse ')}>
         <Button
           variant="ghost"
           size="icon"
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+          className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-center"
         >
           {isCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
         </Button>
+      </div> */}
+      <div className="absolute h-full w-[5px] cursor-w-resize right-[-2.5px]"   onClick={() => setIsCollapsed(!isCollapsed)}></div>
+      <div className={'flex items-center justify-center p-4  border-sidebar-border gap-5 '+ (isCollapsed ? 'flex-col' : 'flex-row-reverse ')}>
+       
+        <div className="flex items-center">
+          <Image
+        src="/logo.png"
+        alt="Logo"
+        width={24}
+        height={24}
+        priority
+        unoptimized
+        style={{ objectFit: "contain" }}
+          />
+        </div>
       </div>
 
       {/* Menu Items */}
@@ -69,7 +87,8 @@ export function Sidebar() {
         </div>
       </aside>
 
-      <SidebarRail />
+      
+        
     </SidebarProvider>
   )
 }
