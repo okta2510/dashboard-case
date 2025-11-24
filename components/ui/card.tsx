@@ -3,11 +3,13 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 function Card({ className, ...props }: React.ComponentProps<"div">) {
+  // const initial = "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm";
+  const selected = "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6";
   return (
     <div
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        selected,
         className
       )}
       {...props}
