@@ -38,6 +38,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
   const [jurisdiction, setJurisdiction] = useState("")
   const [contractRole, setContractRole] = useState("")
   const [reviewPlaybook, setReviewPlaybook] = useState("")
+  const [isDirty, setIsDirty] = useState(false)
 
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([])
   const [isDragging, setIsDragging] = useState(false)
@@ -120,13 +121,13 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
     switch (currentStep) {
       case 1:
         return (
-          <div className="space-y-8">
-            <div className="space-y-3">
-              <div>
+          <div className="space-y-8 border-b border-dotted">
+            <div className="space-y-3 grid-cols-2 grid">
+              <div className="inline-block">
                 <Label htmlFor="playbook-name" className="text-base font-semibold">
                   Playbook Name
                 </Label>
-                <p className="text-sm text-muted-foreground">Enter a name for the playbook</p>
+                <p className="text-xs text-muted-foreground">Enter a name for the playbook</p>
               </div>
               <Input
                 id="playbook-name"
@@ -137,30 +138,31 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
               />
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-3 grid-cols-2 grid">
               <div>
                 <Label className="text-base font-semibold">Visibility</Label>
-                <p className="text-sm text-muted-foreground">Set playbook visibility</p>
+                <p className="text-xs text-muted-foreground">Set playbook visibility</p>
               </div>
-              <div className="flex gap-3">
+              <div className="flex-row flex gap-3 p-2 bg-[#F5F5F5] border-[#E5E5E5] rounded-full border-1 border-">
                 <Button
                   type="button"
-                  variant={visibility === "private" ? "default" : "outline"}
+                  variant={visibility === "private" ? "secondary" : "ghost"}
                   className={cn(
-                    "flex-1 max-w-[200px]",
-                    visibility === "private" && "bg-foreground text-background hover:bg-foreground/90",
+                    "flex-1 max-w-[200px] rounded-full py-2 px-4 text-[#737373]",
+                    visibility === "private" && "bg-[#fff] text-[#0A0A0A]  border-[#E5E5E5] border-1"
                   )}
                   onClick={() => setVisibility("private")}
                 >
                   <Lock className="mr-2 h-4 w-4" />
                   Private
                 </Button>
+
                 <Button
                   type="button"
-                  variant={visibility === "public" ? "default" : "outline"}
+                  variant={visibility === "public" ? "secondary" : "ghost"}
                   className={cn(
-                    "flex-1 max-w-[200px]",
-                    visibility === "public" && "bg-foreground text-background hover:bg-foreground/90",
+                    "flex-1 max-w-[200px] rounded-full py-2 px-4 text-[#737373]",
+                    visibility === "public" && "bg-[#fff] text-[#0A0A0A]  border-[#E5E5E5] border-1"
                   )}
                   onClick={() => setVisibility("public")}
                 >
@@ -170,18 +172,18 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
               </div>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-3 grid-cols-2 grid">
               <div>
                 <Label className="text-base font-semibold">Profile Type</Label>
-                <p className="text-sm text-muted-foreground">Profile type for this playbook</p>
+                <p className="text-xs text-muted-foreground">Profile type for this playbook</p>
               </div>
               <div className="flex gap-3">
                 <Button
                   type="button"
                   variant={profileType === "general" ? "default" : "outline"}
                   className={cn(
-                    "flex-1 max-w-[150px]",
-                    profileType === "general" && "bg-foreground text-background hover:bg-foreground/90",
+                    "flex-1 max-w-[150px]  rounded-full py-2 px-4",
+                    profileType === "general" && "bg-foreground text-background hover:bg-foreground/90 ",
                   )}
                   onClick={() => setProfileType("general")}
                 >
@@ -192,8 +194,8 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                   type="button"
                   variant={profileType === "client" ? "default" : "outline"}
                   className={cn(
-                    "flex-1 max-w-[150px]",
-                    profileType === "client" && "bg-foreground text-background hover:bg-foreground/90",
+                    "flex-1 max-w-[150px]  rounded-full py-2 px-4",
+                    profileType === "client" && "bg-foreground text-background hover:bg-foreground/90 ",
                   )}
                   onClick={() => setProfileType("client")}
                 >
@@ -204,8 +206,8 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                   type="button"
                   variant={profileType === "firm" ? "default" : "outline"}
                   className={cn(
-                    "flex-1 max-w-[150px]",
-                    profileType === "firm" && "bg-foreground text-background hover:bg-foreground/90",
+                    "flex-1 max-w-[150px]  rounded-full py-2 px-4",
+                    profileType === "firm" && "bg-foreground text-background hover:bg-foreground/90 ",
                   )}
                   onClick={() => setProfileType("firm")}
                 >
@@ -220,15 +222,15 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
       case 2:
         return (
           <div className="space-y-6">
-            <div className="space-y-3">
+            <div className="space-y-3 grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="contract-type" className="text-base font-semibold">
                   Contract Type
                 </Label>
-                <p className="text-sm text-muted-foreground">Select the category to ensure the accurate AI analysis</p>
+                <p className="text-xs text-muted-foreground">Select the category to ensure the accurate AI analysis</p>
               </div>
-              <Select value={contractType} onValueChange={setContractType}>
-                <SelectTrigger id="contract-type" className="max-w-xl">
+              <Select  value={contractType} onValueChange={setContractType}>
+                <SelectTrigger id="contract-type" className="max-w-xl w-full">
                   <SelectValue placeholder="Select contract type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -237,7 +239,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                   <SelectItem value="employment">Employment Contract</SelectItem>
                 </SelectContent>
               </Select>
-              {!contractType && (
+              {isDirty && !contractType && (
                 <div className="flex items-center gap-2 text-sm text-red-500">
                   <AlertCircle className="h-4 w-4" />
                   <span>This field is required</span>
@@ -245,15 +247,15 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
               )}
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-3  grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="jurisdiction" className="text-base font-semibold">
                   Juridiction
                 </Label>
-                <p className="text-sm text-muted-foreground">Choose the governing juridiction</p>
+                <p className="text-xs text-muted-foreground">Choose the governing juridiction</p>
               </div>
-              <Select value={jurisdiction} onValueChange={setJurisdiction}>
-                <SelectTrigger id="jurisdiction" className="max-w-xl">
+              <Select  value={jurisdiction} onValueChange={setJurisdiction}>
+                <SelectTrigger id="jurisdiction" className="max-w-xl w-full">
                   <SelectValue placeholder="Select juridiction" />
                 </SelectTrigger>
                 <SelectContent>
@@ -262,7 +264,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                   <SelectItem value="eu">European Union</SelectItem>
                 </SelectContent>
               </Select>
-              {!jurisdiction && (
+              {isDirty && !jurisdiction && (
                 <div className="flex items-center gap-2 text-sm text-red-500">
                   <AlertCircle className="h-4 w-4" />
                   <span>This field is required</span>
@@ -270,15 +272,15 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
               )}
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-3  grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="contract-role" className="text-base font-semibold">
                   Contract Type
                 </Label>
-                <p className="text-sm text-muted-foreground">Specify the role that you are representing</p>
+                <p className="text-xs text-muted-foreground">Specify the role that you are representing</p>
               </div>
-              <Select value={contractRole} onValueChange={setContractRole}>
-                <SelectTrigger id="contract-role" className="max-w-xl">
+              <Select  value={contractRole} onValueChange={setContractRole}>
+                <SelectTrigger id="contract-role" className="max-w-xl w-full">
                   <SelectValue placeholder="Select role" />
                 </SelectTrigger>
                 <SelectContent>
@@ -287,7 +289,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                   <SelectItem value="advisor">Advisor</SelectItem>
                 </SelectContent>
               </Select>
-              {!contractRole && (
+              {isDirty && !contractRole && (
                 <div className="flex items-center gap-2 text-sm text-red-500">
                   <AlertCircle className="h-4 w-4" />
                   <span>This field is required</span>
@@ -295,15 +297,15 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
               )}
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-3  grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="review-playbook" className="text-base font-semibold">
                   Review Playbook
                 </Label>
-                <p className="text-sm text-muted-foreground">Select a review framework to apply policy</p>
+                <p className="text-xs text-muted-foreground">Select a review framework to apply policy</p>
               </div>
-              <Select value={reviewPlaybook} onValueChange={setReviewPlaybook}>
-                <SelectTrigger id="review-playbook" className="max-w-xl">
+              <Select  value={reviewPlaybook} onValueChange={setReviewPlaybook}>
+                <SelectTrigger id="review-playbook" className="max-w-xl w-full">
                   <SelectValue placeholder="Select review playbook" />
                 </SelectTrigger>
                 <SelectContent>
@@ -312,7 +314,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                   <SelectItem value="compliance">Compliance Review</SelectItem>
                 </SelectContent>
               </Select>
-              {!reviewPlaybook && (
+              {isDirty && !reviewPlaybook && (
                 <div className="flex items-center gap-2 text-sm text-red-500">
                   <AlertCircle className="h-4 w-4" />
                   <span>This field is required</span>
@@ -324,10 +326,10 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
 
       case 3:
         return (
-          <div className="space-y-6">
+          <div className="space-y-6 ">
             <div
               className={cn(
-                "relative rounded-lg border-2 border-dashed p-12 text-center transition-colors",
+                "relative rounded-lg border-2 border-dashed p-12 text-center transition-colors ",
                 isDragging ? "border-grbg-gray-950 bg-teal-50" : "border-muted-foreground/25 bg-muted/20",
               )}
               onDragOver={handleDragOver}
@@ -347,7 +349,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                 </div>
                 <div>
                   <p className="text-base font-medium">Drag and drop contract here, or click to select them</p>
-                  <p className="mt-1 text-sm text-muted-foreground">
+                  <p className="mt-1 text-xs text-muted-foreground">
                     Please upload between 3 and 10 contracts files to ensure comprehensive playbook traing and optimal
                     AI performance
                   </p>
@@ -375,7 +377,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                           <Trash2 className="h-4 w-4" />
                         </button>
                       </div>
-                      <p className="text-sm text-muted-foreground">{formatFileSize(file.size)}</p>
+                      <p className="text-xs text-muted-foreground">{formatFileSize(file.size)}</p>
                       <div className="mt-2 flex items-center gap-2">
                         <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-muted">
                           <div className="h-full bg-gray-950 transition-all" style={{ width: `${file.progress}%` }} />
@@ -398,7 +400,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                 <Upload className="h-8 w-8 text-grbg-gray-950" />
               </div>
               <h3 className="text-lg font-semibold">Ready to Upload</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
+              <p className="mt-2 text-xs text-muted-foreground">
                 Click &apos;Submit&apos; to upload your playbook and start the review process
               </p>
             </div>
@@ -427,13 +429,13 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] sm:max-w-4xl lg:max-w-5xl gap-0 p-0 max-h-[90vh]">
-        <div className="flex flex-col sm:flex-row h-[85vh] sm:h-[600px]">
+      <DialogContent showCloseButton={false} className="max-w-[95vw] sm:max-w-4xl lg:max-w-5xl gap-0 p-0 max-h-[90vh]">
+        <div className="flex flex-col sm:flex-row h-[85vh] sm:h-[600px] p-5 bg-[#F4F4F5]">
           {/* Left Sidebar */}
-          <div className="w-full sm:w-72 lg:w-80 border-b sm:border-b-0 sm:border-r bg-muted/30 p-4 sm:p-6">
+          <div className="w-full h-full sm:w-72 lg:w-80 border-b sm:border-b-0  bg-muted/30 p-4 sm:p-6 relative">
             <DialogHeader className="mb-6 sm:mb-8">
               <DialogTitle className="text-lg sm:text-xl">Create Review Playbook</DialogTitle>
-              <p className="text-xs sm:text-sm text-muted-foreground">
+              <p className="text-xs sm:text-xs text-muted-foreground">
                 You can upload multiple files using a zip file.
               </p>
             </DialogHeader>
@@ -450,28 +452,29 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
               <StepItem number={4} label="Upload & Submit" active={currentStep === 4} completed={false} />
             </div>
 
-            <div className="mt-6 sm:mt-8">
-              <div className="text-xs text-muted-foreground">Step {currentStep} of 4</div>
-              <div className="mt-2 h-1 overflow-hidden rounded-full bg-muted">
-                <div
-                  className="h-full bg-gray-950 transition-all duration-300"
-                  style={{ width: `${(currentStep / 4) * 100}%` }}
-                />
+            <div className="absolute bottom-0 left-0 w-full p-4 sm:p-6 overflow-hidden">
+              <div className="text-sm text-[#003D3E]">Step {currentStep} of 4</div>
+              <div className="mt-2 h-[8px] overflow-hidden rounded-full bg-muted">
+              <div
+                className="h-full bg-[#003D3E] transition-all duration-300"
+                style={{ width: `${(currentStep / 4) * 100}%` }}
+              />
               </div>
             </div>
           </div>
 
           {/* Main Content */}
-          <div className="flex flex-1 flex-col min-h-0">
-            <div className="flex items-center justify-between border-b px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex flex-1 flex-col min-h-0 bg-white rounded-2xl border-[#E5E5E8] border-1"> 
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 relative">
               <h2 className="text-base sm:text-lg font-semibold">{getStepTitle()}</h2>
-              {/* <button
+              <button
                 onClick={handleCancel}
-                className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100"
+                className="absolute top-2 right-2 sm:top-4 sm:right-6 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 bg-white p-1"
+                type="button"
               >
-                <X className="h-4 w-4" />
+                <X className="h-5 w-5" />
                 <span className="sr-only">Close</span>
-              </button> */}
+              </button>
             </div>
 
             <div className="flex-1 overflow-y-auto p-4 sm:p-6">{renderStepContent()}</div>
@@ -488,7 +491,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                   Cancel
                 </Button>
               )}
-              <Button onClick={handleNextStep} className="bg-gray-950 hover:bg-gray-900 text-white">
+              <Button onClick={handleNextStep} className="bg-[#003D3E] hover:bg-[#003D3E] text-white">
                 {currentStep === 4 ? "Submit" : "Next Step"}
               </Button>
             </div>
@@ -511,13 +514,16 @@ function StepItem({
   completed?: boolean
 }) {
   return (
-    <div className="flex items-center gap-3">
+    <div className={cn(
+      'flex items-center gap-3 p-2 rounded-3xl',
+      active && 'bg-white'
+    )}>
       <div
         className={cn(
-          "flex h-6 w-6 items-center justify-center rounded-full border-2 text-xs font-medium shrink-0",
-          active && "border-grbg-gray-950 bg-gray-950 text-white",
-          completed && "border-grbg-gray-950 bg-gray-950 text-white",
-          !active && !completed && "border-muted-foreground/30 bg-background text-muted-foreground",
+          "flex h-6 w-6 items-center justify-center rounded-full border-2  text-xs font-medium shrink-0 ",
+          active && " bg-[#fff] text-[#fff] border-dashed border-[#003D3E]",
+          completed && " bg-[#F4F4F5] text-[#003D3E] border-[#003D3E]",
+          !active && !completed && "bg-[#F4F4F5] text-[#fff]",
         )}
       >
         {completed || active ? "✓" : number}
