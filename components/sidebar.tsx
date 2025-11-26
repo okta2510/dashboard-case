@@ -16,9 +16,9 @@ export function Sidebar() {
     { icon: Inbox, label: "Inbox", href: "#" },
     { label: "separator"},
     { icon: FileText, label: "Documents", href: "#" },
-    { icon: LayoutGrid, label: "menu", href: "#" },
-    { icon: Atom, label: "menu", href: "#" },
-    { icon: HardDrive, label: "menu", href: "#" },
+    { icon: LayoutGrid, label: "Grid", href: "#" },
+    { icon: Atom, label: "Copilot", href: "#" },
+    { icon: HardDrive, label: "Codex", href: "#" },
   ]
 
   return (

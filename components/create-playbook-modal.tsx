@@ -122,8 +122,8 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
       case 1:
         return (
           <div className="space-y-8 border-b border-dotted">
-            <div className="space-y-3 grid-cols-2 grid">
-              <div className="inline-block">
+            <div className="space-y-3 flex flex-row gap-2">
+              <div className="inline-block flex-[2]">
                 <Label htmlFor="playbook-name" className="text-base font-semibold">
                   Playbook Name
                 </Label>
@@ -134,84 +134,84 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                 placeholder="Enter playbook name"
                 value={playbookName}
                 onChange={(e) => setPlaybookName(e.target.value)}
-                className="max-w-xl"
+                className="max-w-xl bg-white rounded-full py-2.5 px-3 text-sm leading-[40px] flex-[3]"
               />
             </div>
 
-            <div className="space-y-3 grid-cols-2 grid">
-              <div>
+            <div className="space-y-3 flex gap-4">
+              <div className="flex-[2]">
                 <Label className="text-base font-semibold">Visibility</Label>
                 <p className="text-xs text-muted-foreground">Set playbook visibility</p>
               </div>
-              <div className="flex-row flex gap-3 p-2 bg-[#F5F5F5] border-[#E5E5E5] rounded-full border-1 border-">
+              <div className="flex gap-3 p-2 bg-[#F5F5F5] border-[#E5E5E5] rounded-full border-1 flex-[3]">
                 <Button
                   type="button"
-                  variant={visibility === "private" ? "secondary" : "ghost"}
+                  variant={visibility === "private" ? "ghost" : "ghost"}
                   className={cn(
-                    "flex-1 max-w-[200px] rounded-full py-2 px-4 text-[#737373]",
+                    "max-w-[200px] rounded-full py-2 px-4 border-1 border-[transparent] text-[#737373] cursor-pointer grow",
                     visibility === "private" && "bg-[#fff] text-[#0A0A0A]  border-[#E5E5E5] border-1"
                   )}
                   onClick={() => setVisibility("private")}
                 >
-                  <Lock className="mr-2 h-4 w-4" />
+                  <Lock className="mr-0 h-4 w-4" />
                   Private
                 </Button>
 
                 <Button
                   type="button"
-                  variant={visibility === "public" ? "secondary" : "ghost"}
+                  variant={visibility === "public" ? "ghost" : "ghost"}
                   className={cn(
-                    "flex-1 max-w-[200px] rounded-full py-2 px-4 text-[#737373]",
+                    "max-w-[200px] rounded-full py-2 px-4 border-1 border-[transparent] text-[#737373] cursor-pointer grow",
                     visibility === "public" && "bg-[#fff] text-[#0A0A0A]  border-[#E5E5E5] border-1"
                   )}
                   onClick={() => setVisibility("public")}
                 >
-                  <Globe className="mr-2 h-4 w-4" />
+                  <Globe className="mr-0 h-4 w-4" />
                   Public
                 </Button>
               </div>
             </div>
 
-            <div className="space-y-3 grid-cols-2 grid">
-              <div>
+            <div className="space-y-3 flex gap-4">
+              <div className="flex-[2]">
                 <Label className="text-base font-semibold">Profile Type</Label>
                 <p className="text-xs text-muted-foreground">Profile type for this playbook</p>
               </div>
-              <div className="flex gap-3">
+            <div className="flex gap-3 p-2 bg-[#F5F5F5] border-[#E5E5E5] rounded-full border-1 flex-[3] gap-2">
                 <Button
                   type="button"
                   variant={profileType === "general" ? "default" : "outline"}
                   className={cn(
-                    "flex-1 max-w-[150px]  rounded-full py-2 px-4",
+                    "flex-1 max-w-[150px]  rounded-full py-2 px-4 border-1 border-[transparent]",
                     profileType === "general" && "bg-foreground text-background hover:bg-foreground/90 ",
                   )}
                   onClick={() => setProfileType("general")}
                 >
-                  <User className="mr-2 h-4 w-4" />
+                  <User className="mr-0 h-4 w-4" />
                   General
                 </Button>
                 <Button
                   type="button"
                   variant={profileType === "client" ? "default" : "outline"}
                   className={cn(
-                    "flex-1 max-w-[150px]  rounded-full py-2 px-4",
+                    "flex-1 max-w-[150px]  rounded-full py-2 px-4 border-1 border-[transparent]",
                     profileType === "client" && "bg-foreground text-background hover:bg-foreground/90 ",
                   )}
                   onClick={() => setProfileType("client")}
                 >
-                  <Users className="mr-2 h-4 w-4" />
+                  <Users className="mr-0 h-4 w-4" />
                   Client
                 </Button>
                 <Button
                   type="button"
                   variant={profileType === "firm" ? "default" : "outline"}
                   className={cn(
-                    "flex-1 max-w-[150px]  rounded-full py-2 px-4",
+                    "flex-1 max-w-[150px]  rounded-full py-2 px-4 border-1 border-[transparent]",
                     profileType === "firm" && "bg-foreground text-background hover:bg-foreground/90 ",
                   )}
                   onClick={() => setProfileType("firm")}
                 >
-                  <Building2 className="mr-2 h-4 w-4" />
+                  <Building2 className="mr-0 h-4 w-4" />
                   Firm
                 </Button>
               </div>
@@ -222,7 +222,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
       case 2:
         return (
           <div className="space-y-6">
-            <div className="space-y-3 grid grid-cols-2 gap-4">
+            <div className="space-y-3 grid grid-cols-2 gap-2">
               <div>
                 <Label htmlFor="contract-type" className="text-base font-semibold">
                   Contract Type
@@ -247,7 +247,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
               )}
             </div>
 
-            <div className="space-y-3  grid grid-cols-2 gap-4">
+            <div className="space-y-3  grid grid-cols-2 gap-2">
               <div>
                 <Label htmlFor="jurisdiction" className="text-base font-semibold">
                   Juridiction
@@ -272,7 +272,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
               )}
             </div>
 
-            <div className="space-y-3  grid grid-cols-2 gap-4">
+            <div className="space-y-3  grid grid-cols-2 gap-2">
               <div>
                 <Label htmlFor="contract-role" className="text-base font-semibold">
                   Contract Type
@@ -297,7 +297,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
               )}
             </div>
 
-            <div className="space-y-3  grid grid-cols-2 gap-4">
+            <div className="space-y-3  grid grid-cols-2 gap-2">
               <div>
                 <Label htmlFor="review-playbook" className="text-base font-semibold">
                   Review Playbook
@@ -362,7 +362,7 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                 {uploadedFiles.map((file) => (
                   <div
                     key={file.id}
-                    className="flex items-center gap-4 rounded-lg border bg-card p-4 transition-colors hover:bg-muted/50"
+                    className="flex items-center gap-2 rounded-lg border bg-card p-4 transition-colors hover:bg-muted/50"
                   >
                     <div className="flex h-10 w-10 items-center justify-center rounded bg-red-100">
                       <FileText className="h-5 w-5 text-red-600" />
@@ -487,11 +487,11 @@ export function CreatePlaybookModal({ open, onOpenChange }: CreatePlaybookModalP
                 </Button>
               )}
               {currentStep === 1 && (
-                <Button variant="outline" onClick={handleCancel}>
+                <Button variant="outline" onClick={handleCancel} className="rounded-full">
                   Cancel
                 </Button>
               )}
-              <Button onClick={handleNextStep} className="bg-[#003D3E] hover:bg-[#003D3E] text-white">
+              <Button onClick={handleNextStep} className="bg-[#003D3E] hover:bg-[#003D3E] text-white rounded-full">
                 {currentStep === 4 ? "Submit" : "Next Step"}
               </Button>
             </div>
@@ -520,17 +520,20 @@ function StepItem({
     )}>
       <div
         className={cn(
-          "flex h-6 w-6 items-center justify-center rounded-full border-2  text-xs font-medium shrink-0 ",
+          "flex h-[15px] w-[15px] items-center justify-center rounded-full border-2  font-medium shrink-0 relative",
           active && " bg-[#fff] text-[#fff] border-dashed border-[#003D3E]",
           completed && " bg-[#F4F4F5] text-[#003D3E] border-[#003D3E]",
-          !active && !completed && "bg-[#F4F4F5] text-[#fff]",
+          !active && !completed && "bg-[#F4F4F5] text-[#F4F4F5]",
         )}
       >
-        {completed || active ? "✓" : number}
+        {/* {completed || active ? (<span className="absolute top-[-8px] right-[-3px]"  style={{ */}
+        {completed  ? (<span className="absolute top-[-8px] right-[-3px]"  style={{
+            textShadow: "-1px 0 4px #F4F4F5, 0 1px 4px #F4F4F5, 1px 0 4px #F4F4F5, 0 -1px 4px #F4F4F5",
+          }}>✓</span>) : ''}
       </div>
       <span
         className={cn(
-          "text-xs sm:text-sm",
+          "text-xs sm:text-xs",
           active || completed ? "font-medium text-foreground" : "text-muted-foreground",
         )}
       >
